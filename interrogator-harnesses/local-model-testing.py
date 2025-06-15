@@ -1,5 +1,5 @@
 import os
-from agent_interrogator import AgentInterrogator, InterrogationConfig, LLMConfig, ModelProvider, OutputMode
+from agent_interrogator import AgentInterrogator, InterrogationConfig, LLMConfig, ModelProvider, OutputMode, HuggingFaceConfig
 from dotenv import load_dotenv
 import aiohttp
 import asyncio
@@ -98,9 +98,14 @@ class PlaywrightCallback:
 # Defining Config for AgentInterrogator
 config = InterrogationConfig(
     llm=LLMConfig(
-        provider=ModelProvider.OPENAI,  # or ModelProvider.HUGGINGFACE
-        model_name="gpt-4.1",
-        api_key=os.getenv("API_KEY")
+        provider=ModelProvider.HUGGINGFACE,  # or ModelProvider.HUGGINGFACE
+        model_name="context-labs/meta-llama-Llama-3.2-3B-Instruct-FP16",  # Or path to local model
+        huggingface=HuggingFaceConfig(
+            device="ane",  # Use Apple Neural Engine on M1/M2/M3 Macs
+            quantization="fp16",  # Required for ANE
+            allow_download=True,  # Whether to allow downloading models from HF Hub
+            revision="main"  # Optional model revision/tag
+        )
     ),
     max_iterations=5,  # Maximum cycles for capability discovery
     output_mode=OutputMode.VERBOSE
@@ -122,7 +127,7 @@ callback = PlaywrightCallback(
 async def main():
     interrogator = AgentInterrogator(config, callback)
     profile = await interrogator.interrogate()
-    print(profile)
+    print(json.loads(str(profile)))
 
 # Run it
 if __name__ == "__main__":
