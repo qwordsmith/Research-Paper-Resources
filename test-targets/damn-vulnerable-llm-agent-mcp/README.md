@@ -1,3 +1,11 @@
+> ⚠️ **Notice**  
+> This is a **MODIFIED fork** of the original [ReversecLabs/damn-vulnerable-llm-agent](https://github.com/ReversecLabs/damn-vulnerable-llm-agent).
+> This version of the DVLA has been modified to introduce MCP support.
+> This is the DVLA test target with MCP used for the **Agent Interrogator** testing in this research.  
+> Execute the DVLA as a container, with ```OPENAI_API_KEY=<API KEY>``` and ```MCP_SSE_URL=<MCP URL>``` defined in your .env file.
+> Zapier MCP (https://mcp.zapier.com/) was used for this research, selecting Python as the client for the configured MCP server, and utilizing the MCP server URL at the bottom of the Connect tab of the server configuration as the MCP_SSE_URL environment variable value
+> Build ```docker build -t dvla:mcp .``` the container
+> Run ```docker run -t --env-file .env -p 8502:8502 dvla:mcp``` the image for your DVLA w/ MCP instance.
 # Damn Vulnerable LLM Agent
 
 ## Introduction

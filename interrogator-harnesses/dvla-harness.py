@@ -103,7 +103,7 @@ config = InterrogationConfig(
         api_key=os.getenv("API_KEY")
     ),
     max_iterations=5,  # Maximum cycles for capability discovery
-    output_mode=OutputMode.VERBOSE
+    output_mode=OutputMode.STANDARD
 )
 
 # Initializing Playwright Callback Instance for AgentInterrogator

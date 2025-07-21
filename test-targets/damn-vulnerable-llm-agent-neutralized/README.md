@@ -1,3 +1,10 @@
+> ⚠️ **Notice**  
+> This is a **MODIFIED fork** of the original [ReversecLabs/damn-vulnerable-llm-agent](https://github.com/ReversecLabs/damn-vulnerable-llm-agent).
+> This version of the DVLA has been modified to remove its tools.
+> This is the DVLA test target with no tools used for the **Agent Interrogator** testing in this research.  
+> Execute the DVLA as a container, with ```OPENAI_API_KEY=<API KEY>``` defined in your .env file.
+> Build ```docker build -t dvla:neutral .``` the container
+> Run ```docker run -t --env-file .env -p 8503:8503 dvla:neutral``` the image for your DVLA without tools instance.
 # Damn Vulnerable LLM Agent
 
 ## Introduction
